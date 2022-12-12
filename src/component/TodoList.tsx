@@ -9,6 +9,7 @@ import {
   clearText,
   setText,
   toggleDes,
+  toggleDone,
 } from "../store/todoSlice";
 
 const TodoList = () => {
@@ -63,7 +64,13 @@ const TodoList = () => {
         <ul>
           {todos.map((todo) => (
             <li key={todo.id}>
-              {todo.text}{" "}
+              <span
+                onClick={() => dispatch(toggleDone(todo.id))}
+                style={{
+                  textDecoration: todo.done ? "line-through" : "underline",
+                }}>
+                {todo.text}
+              </span>
               <button onClick={() => removeTodo(todo.id)}>Ta bort</button>
             </li>
           ))}

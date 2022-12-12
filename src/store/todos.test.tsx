@@ -6,6 +6,7 @@ import reducer, {
   clearText,
   toggleDes,
   InitialState,
+  toggleDone,
 } from "./todoSlice";
 
 const initialState: InitialState = {
@@ -64,6 +65,19 @@ describe("TodoReducer", () => {
     expect(reducer(initialState, remove("111"))).toEqual({
       ...initialState,
       todos: [],
+    });
+  });
+
+  test("Should set the done value to true if toggleDone is called with 111 id", () => {
+    expect(reducer(initialState, toggleDone("111"))).toEqual({
+      ...initialState,
+      todos: [
+        {
+          text: "first to do",
+          id: "111",
+          done: true,
+        },
+      ],
     });
   });
 });

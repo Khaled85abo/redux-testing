@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 type Todo = {
   text: string;
   id: string;
-  done: false;
+  done: boolean;
 };
 
 export type InitialState = {
@@ -33,7 +33,7 @@ const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     toggleDone: (state, action) => {
-      state.todos.map((todo) => {
+      state.todos = state.todos.map((todo) => {
         if (todo.id === action.payload) {
           return { ...todo, done: !todo.done };
         }
@@ -58,7 +58,7 @@ const todoSlice = createSlice({
   },
 });
 
-export const { add, remove, sort, clearText, toggleDes, setText } =
+export const { add, remove, sort, clearText, toggleDes, setText, toggleDone } =
   todoSlice.actions;
 
 export default todoSlice.reducer;
